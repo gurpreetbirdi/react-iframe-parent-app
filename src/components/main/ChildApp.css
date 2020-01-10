@@ -1,0 +1,7 @@
+.main-content{
+  border: 1px blue solid;
+  position: relative;
+  width: 85%;
+  min-height: 100%;
+  left: 15%;
+}

@@ -1,0 +1,6 @@
+.sidebar{
+  border: 1px red solid;
+  position: absolute;
+  width: 15%;
+  min-height: 100%;
+}
