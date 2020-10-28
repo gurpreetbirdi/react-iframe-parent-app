@@ -4,7 +4,7 @@ A react micro-frontend application, that can call multiple other react micro-fro
 
 ## Uses:
 
-This project uses a starter kit developed by me. [react-redux-router-hooks-starter-kit](https://github.com/gurpreetbirdi/react-redux-router-hooks-starter-kit.git "gurpreetbirdi/react-redux-router-hooks-starter-kit")
+This project uses a starter kit developed by me. [react-redux-router-hooks-starter-kit](https://github.com/gurpreetbirdi/react-redux-router-hooks-starter-kit.git 'gurpreetbirdi/react-redux-router-hooks-starter-kit')
 
 ## Getting Started
 

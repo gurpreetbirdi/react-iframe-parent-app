@@ -9,27 +9,36 @@ import config from './config/api';
 
 import * as serviceWorker from './serviceWorker';
 
-let body = document.getElementsByTagName('body')[0];
-let jsUrls = config.CHILDAPPS_URL.JSURLS;
-let jsPromises, promises;
+const body = document.getElementsByTagName('body')[0];
+const jsUrls = config.CHILDAPPS_URL.JSURLS;
 
 // dynamically add script tag for child apps on the run
-jsPromises = jsUrls.map(jsUrl => {
+const jsPromises = jsUrls.map(jsUrl => {
   return new Promise((resolve, reject) => {
-    let tag = document.createElement('script');
+    const tag = document.createElement('script');
     tag.type = 'text/javascript';
     tag.src = jsUrl;
     tag.async = true;
+    let loaded = false;
     tag.onload = () => {
+      loaded = true;
       resolve();
     };
     body.appendChild(tag);
+    if (!loaded) {
+      reject(new Error(`please check if ${jsUrl} is working!`));
+    }
   });
 });
 
-promises = jsPromises;
+const promises = jsPromises;
 
-Promise.all(promises).then(function () {
+Promise.allSettled(promises).then(results => {
+  results.forEach(result => {
+    if (result.status === 'rejected') {
+      console.error(result.reason);
+    }
+  });
   ReactDOM.render(<App />, document.getElementById('root'));
 });
 

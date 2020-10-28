@@ -1,38 +1,38 @@
 const dev = {
-  "CHILDAPPS_URL": {
-    "JSURLS": ["http://localhost:3001/main.js"]
-  }
+  CHILDAPPS_URL: {
+    JSURLS: ['http://localhost:3001/main.js'],
+  },
 };
 
 const qa = {
-  "CHILDAPPS_URL": {
-    "JSURLS": ["http://localhost:3001/main.js"]
-  }
+  CHILDAPPS_URL: {
+    JSURLS: ['http://localhost:3001/main.js'],
+  },
 };
 
-const stage = {
-  "CHILDAPPS_URL": {
-    "JSURLS": ["http://localhost:3001/main.js"]
-  }
+const stg = {
+  CHILDAPPS_URL: {
+    JSURLS: ['http://localhost:3001/main.js'],
+  },
 };
 
 const prod = {
-  "CHILDAPPS_URL": {
-    "JSURLS": ["http://localhost:3001/main.js"]
-  }
+  CHILDAPPS_URL: {
+    JSURLS: ['http://localhost:3001/main.js'],
+  },
 };
 
-console.log("env:", process.env.REACT_APP_ENV);
+console.info('env:', process.env.NODE_ENV);
 
-const config =
-  process.env.REACT_APP_ENV === "production"
-    ? prod
-    : process.env.REACT_APP_ENV === "stage"
-      ? stage
-      : process.env.REACT_APP_ENV === "qa"
-        ? qa
-        : dev;
+let config = dev;
+if (process.env.NODE_ENV === 'prod') {
+  config = prod;
+} else if (process.env.NODE_ENV === 'stg') {
+  config = stg;
+} else if (process.env.NODE_ENV === 'qa') {
+  config = qa;
+}
 
 export default {
-  ...config
+  ...config,
 };
